@@ -1,0 +1,25 @@
+server:
+  port: 8080 
+  session-timeout: 30
+  tomcat.max-threads: 0
+  tomcat.uri-encoding: UTF-8
+spring:
+  datasource: #数据源配置
+    url: jdbc:mysql://106.14.116.180:3306/sbdemo?useUnicode=yes&characterEncoding=UTF-8&createDatabaseIfNotExist=true&useSSL=false  
+    username: root
+    password: chengm!(($
+    driverClassName: com.mysql.jdbc.Driver
+  jpa: #jpa配置
+    database: MYSQL
+    show-sql: true
+    hibernate.ddl-auto: update
+    hibernate.naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+  thymeleaf: #thymeleaf模板配置
+    cache: false #关闭thymeleaf缓存 开发时使用 否则没有实时画面
+    check-template-location: true #检查模板是否存在，然后再呈现
+    content-type: text/html
+    enabled: true #启用MVC Thymeleaf视图分辨率
+    mode: LEGACYHTML5 #模板编码
+    prefix: classpath:/templates/ #在构建URL时预先查看名称的前缀
+    suffix: .html #构建URL时附加查看名称的后缀.   	 

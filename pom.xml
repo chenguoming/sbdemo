@@ -36,7 +36,7 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-	    <!-- 数据库操作
+	    <!-- 数据库操作-->
 		<dependency>
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -45,7 +45,6 @@
 	        <groupId>mysql</groupId>
 	        <artifactId>mysql-connector-java</artifactId>
 	    </dependency>
-	     -->
 		<!-- 测试模块，包括JUnit、Hamcrest、Mockito -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
