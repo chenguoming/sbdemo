@@ -2,7 +2,10 @@ package com.adamai.service.auth.shiro;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
@@ -65,11 +68,17 @@ public class ShiroConfiguration {
        return shiroFilterFactoryBean;  
     }  
 
-	@Bean
-	public MyShiroRealm myShiroRealm(){
-		MyShiroRealm myShiroRealm = new MyShiroRealm();
-		return myShiroRealm;
-	}
+    /** 
+     * 身份认证realm; 
+     * (这个需要自己写，账号密码校验；权限等) 
+     * @return 
+     */  
+    @Bean  
+    public MyShiroRealm myShiroRealm(){  
+       MyShiroRealm myShiroRealm = new MyShiroRealm();  
+       myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());;  
+       return myShiroRealm;  
+    } 
 
 
 	@Bean
@@ -77,6 +86,22 @@ public class ShiroConfiguration {
 		DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
 		securityManager.setRealm(myShiroRealm());
 		return securityManager;
-	} 
+	}
+	
+	/** 
+     * 凭证匹配器 
+     * （由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了 
+     *  所以我们需要修改下doGetAuthenticationInfo中的代码; 
+     * ） 
+     * @return 
+     */  
+    @Bean  
+    public HashedCredentialsMatcher hashedCredentialsMatcher(){  
+       HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();  
+        
+       hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用MD5算法;  
+       hashedCredentialsMatcher.setHashIterations(1);//散列的次数，比如散列两次，相当于 md5(md5(""));  
+       return hashedCredentialsMatcher;  
+    }
 
 }

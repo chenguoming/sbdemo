@@ -10,6 +10,7 @@ import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 
 import com.adamai.domain.SysPermission;
 import com.adamai.domain.SysRole;
@@ -101,7 +102,6 @@ public class MyShiroRealm extends AuthenticatingRealm{
 	       }  
 	       return authorizationInfo;  
 	    }  
-	     
 	     
 	    /** 
 	     * 将权限对象中的权限code取出. 

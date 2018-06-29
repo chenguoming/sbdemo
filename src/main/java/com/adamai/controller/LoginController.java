@@ -59,27 +59,27 @@ public class LoginController {
 		return "login";
 	}
 
-	@RequestMapping("/login")
-	@ResponseBody
-	public Map<String, Object> login(HttpServletRequest request) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		String name = request.getParameter("name");
-		String pwd = request.getParameter("pwd");
-		SysUser sysUser = userService.findByName(name);
-		map.put("status", 1);
-		if (null != sysUser) {
-			if (!new MD5Util().getMD5ofStr(pwd).equals(sysUser.getPwd())) {
-				map.put("status", 0);
-				map.put("msg", "密码错误");
-			} else {
-				request.getSession().setAttribute("user", sysUser);
-			}
-		} else {
-			map.put("status", 0);
-			map.put("msg", "没有此用户");
-		}
-		return map;
-	}
+//	@RequestMapping("/login")
+//	@ResponseBody
+//	public Map<String, Object> login(HttpServletRequest request) {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		String name = request.getParameter("name");
+//		String pwd = request.getParameter("pwd");
+//		SysUser sysUser = userService.findByName(name);
+//		map.put("status", 1);
+//		if (null != sysUser) {
+//			if (!new MD5Util().getMD5ofStr(pwd).equals(sysUser.getPwd())) {
+//				map.put("status", 0);
+//				map.put("msg", "密码错误");
+//			} else {
+//				request.getSession().setAttribute("user", sysUser);
+//			}
+//		} else {
+//			map.put("status", 0);
+//			map.put("msg", "没有此用户");
+//		}
+//		return map;
+//	}
 
 	/**
 	 * 跳到首页
