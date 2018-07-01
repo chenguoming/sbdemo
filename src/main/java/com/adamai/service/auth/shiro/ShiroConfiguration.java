@@ -11,6 +11,8 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+
 /**
  * shiro配置
  * @author Administrator
@@ -102,6 +104,11 @@ public class ShiroConfiguration {
        hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用MD5算法;  
        hashedCredentialsMatcher.setHashIterations(1);//散列的次数，比如散列两次，相当于 md5(md5(""));  
        return hashedCredentialsMatcher;  
+    }
+    
+    @Bean  
+    public ShiroDialect shiroDialect() {  
+        return new ShiroDialect();  
     }
 
 }

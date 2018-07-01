@@ -6,8 +6,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -87,7 +89,11 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/system/home")
-	public String toHome() {
+	public String toHome(Map<String,Object> map) {
+		//获取用户信息
+		Subject subject = SecurityUtils.getSubject();
+		SysUser user = (SysUser) subject.getPrincipal();
+		map.put("user", user);
 		return "home";
 	}
 }

@@ -38,7 +38,7 @@ public class MyShiroRealm extends AuthenticatingRealm{
 	    @Override  
 	    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {  
 	       System.out.println("MyShiroRealm.doGetAuthenticationInfo()");  
-	        
+	       System.out.println("用户开始进行身份认证");   
 	        
 	       //获取用户的输入的账号.  
 	       String username = (String)token.getPrincipal();  
@@ -53,7 +53,6 @@ public class MyShiroRealm extends AuthenticatingRealm{
 	       }  
 	        
 	        
-	       //账号判断;  
 	        
 	       //加密方式;  
 	       //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现  
@@ -90,7 +89,7 @@ public class MyShiroRealm extends AuthenticatingRealm{
 	        * 缓存过期之后会再次执行。 
 	        */  
 	       System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");  
-	        
+	       System.out.println("开始对用户进行授权");
 	       SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();  
 	       SysUser user  = (SysUser)principals.getPrimaryPrincipal();  
 	        
@@ -103,19 +102,4 @@ public class MyShiroRealm extends AuthenticatingRealm{
 	       return authorizationInfo;  
 	    }  
 	     
-	    /** 
-	     * 将权限对象中的权限code取出. 
-	     * @param permissions 
-	     * @return 
-	     */  
-	//  public Set<String> getStringPermissions(Set<SysPermission> permissions){  
-//	     Set<String> stringPermissions = new HashSet<String>();  
-//	     if(permissions != null){  
-//	         for(SysPermission p : permissions) {  
-//	            stringPermissions.add(p.getPermission());  
-//	          }  
-//	     }  
-//	       return stringPermissions;  
-	//  } 
-
 }

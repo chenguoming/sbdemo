@@ -1,15 +1,32 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title>Insert title here</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--head部分-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta http-equiv="Pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="0">
+<title>后台管理</title>
+<link href="css/login.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="/images/logo.png" type="image/x-icon" />
 </head>
+
 <body>
-	        错误信息：<h4 th:text="${msg}"></h4>
-		<form action="" method="post">
-			<p>账号：<input type="text" name="username"/></p>
-			<p>密码：<input type="text" name="password"/></p>
-			<p><input type="submit" value="登录"/></p>
-		</form>
+<div class="login_box">
+      <div class="login_l_img"><img src="images/login-img.png" /></div>
+      <div class="login">
+          <div class="login_logo"><a href="#"><img src="images/login_logo.png" /></a></div>
+          <div class="login_name">
+               <p>后台管理系统</p>
+          </div>
+          	错误信息：<h4 th:text="${msg}"></h4>
+          <form method="post">
+              <input name="username" type="text"  value="用户名" onfocus="this.value=''" onblur="if(this.value==''){this.value='用户名'}">
+              <span id="password_text" onclick="this.style.display='none';document.getElementById('password').style.display='block';document.getElementById('password').focus().select();" >密码</span>
+			  <input name="password" type="password" id="password" style="display:none;" onblur="if(this.value==''){document.getElementById('password_text').style.display='block';this.style.display='none'};"/>
+              <input value="登录" style="width:100%;" type="submit">
+          </form>
+      </div>
+      <div class="copyright">某某有限公司 版权所有©2016-2018 技术支持电话：000-00000000</div>
+</div>
 </body>
 </html>
